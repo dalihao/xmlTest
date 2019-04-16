@@ -7,6 +7,7 @@
 #include "XMLParser/Public/XmlParser.h"
 #include "XMLReadTest.generated.h"
 
+//#define DEBUG
 UCLASS()
 class XMLTEST_API AXMLReadTest : public AActor
 {
