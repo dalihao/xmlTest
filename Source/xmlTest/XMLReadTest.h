@@ -7,7 +7,8 @@
 #include "XMLParser/Public/XmlParser.h"
 #include "XMLReadTest.generated.h"
 
-//#define DEBUG
+#define DEBUG
+#define ERROR
 UCLASS()
 class XMLTEST_API AXMLReadTest : public AActor
 {
@@ -24,8 +25,11 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-	class FXmlFile *xmlFile = new FXmlFile(TEXT("D://test.xml"));
+	class FXmlFile *xmlFile = new FXmlFile(TEXT("C://test.xml"));
 	//class FXmlFile *xmlFile = nullptr;
-	class FXmlNode* pNode;
+	class FXmlNode* pNode=nullptr;
 	//pNode=XmlFile->GetRootNode();
+	class FString tag;
+	const class FXmlNode* firstChildNode;
+	TArray<class FXmlNode*> children;
 };
