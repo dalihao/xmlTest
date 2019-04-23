@@ -5,12 +5,11 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "UObjectGlobals.h"
-#include "Runtime/UMG/Public/Components/EditableTextBox.h"
+#include "Runtime/UMG/Public/Components/TextBlock.h"
 #include "ComboWidget.generated.h"
-enum class Direction { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT };
 
-// error!
-enum class WindowsCorner { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT };
+class UVerticalBox;
+
 
 
 /**
@@ -23,9 +22,16 @@ class XMLTEST_API UComboWidget : public UUserWidget
 public:
 	UComboWidget(const FObjectInitializer& ObjectInitializer);
 	virtual void NativeConstruct() override;
-	void UpdateComboCout(int value);
-	void ReserCombo();
+	void UpdateComboCount(int value);
+	void ResetCombo();
 
 	UPROPERTY(EditAnywhere, BluePrintReadWrite, meta = (BindWidget))
-		class UEditableTextBox* TXTCombo;
+		class UTextBlock* TXTCombo;
+	UPROPERTY(EditAnywhere, BluePrintReadWrite, meta = (BindWidget))
+		class UTextBlock* nodeName;
+	UPROPERTY(EditAnywhere, BluePrintReadWrite, meta = (BindWidget))
+		class UVerticalBox* childrenVerticalBox;
+	void UpdateNodeName(FString &string);
+	//xmlReader supply for info
+	class AXMLReadTest* xmlReader;
 };

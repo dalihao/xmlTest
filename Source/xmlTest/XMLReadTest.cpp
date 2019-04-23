@@ -40,11 +40,14 @@ AXMLReadTest::AXMLReadTest()
 #ifdef DEBUG
 			
 	firstChildNode = pNode->GetFirstChildNode();
-	//UKismetSystemLibrary::PrintString(this, firstChildNode->GetTag());
-	//rootNodeChildrenNodes = pNode->GetChildrenNodes();
 	children = pNode->GetChildrenNodes();
 	
 	
+#endif
+#if 1
+	
+		/*inGameHUD = Cast<AInGameHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
+	inGameHUD->UpdateComboCount(children.Num());*/
 #endif
 		
 }
@@ -53,7 +56,17 @@ AXMLReadTest::AXMLReadTest()
 void AXMLReadTest::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	//xmlRead 
+	inGameHUD = Cast<AInGameHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
+	if (inGameHUD)
+	{
+		FString tag = firstChildNode->GetTag();
+		inGameHUD->UpdateNodeName(tag);
+	}
+	else
+		UKismetSystemLibrary::PrintString(this,"nullptr");
+#if 0	
+	//show rootNode's children nodes's information
 	const  int childrenCount = children.Num();
 	for (int childIndex = 0; childIndex < childrenCount; childIndex++)
 	{
@@ -61,16 +74,39 @@ void AXMLReadTest::BeginPlay()
 		UKismetSystemLibrary::PrintString(this, children[childIndex]->GetContent());
 
 	}
-	
-}
-
-// Called every frame
-void AXMLReadTest::Tick(float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-#ifdef DEBUG
 
 #endif
 
+#ifdef DEBUG
+	//Cast to InGameHUD,and modify its properties
+
+	
+#endif
+}
+
+// Called every frame
+void AXMLReadTest::Tick(float DeltaTime) 
+{
+	Super::Tick(DeltaTime);
+
+#ifdef DEBUG
+	
+#endif
+
+}
+
+void AXMLReadTest::printALLNodes()
+{
+	//int level = 0;
+	//TArray<FXmlNode*> children;
+	//for (int i = 0; i < ((pNode->GetChildrenNodes()).Num()); i++)
+	//{
+	//	for (int j = 0; j < (pNode->GetChildrenNodes()[i]->GetChildrenNodes().Num()); j++)
+	//	{
+	//		UKismetSystemLibrary::PrintString(this, pNode->GetChildrenNodes()[i]->GetChildrenNodes()[j]->GetTag());
+
+	//	}
+	//	//UKismetSystemLibrary::PrintString(this,pNode->GetChildrenNodes()[i]->GetTag());
+	//}
 }
 

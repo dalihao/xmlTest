@@ -2,17 +2,18 @@
 
 #include "ComboWidget.h"
 
-UComboWidget::UComboWidget(const FObjectInitializer& ObjectInitializer):Super(ObjectInitializer)
+UComboWidget::UComboWidget(const FObjectInitializer& ObjectInitializer):UUserWidget(ObjectInitializer)
 {
 
 }
+
 
 void UComboWidget::NativeConstruct()
 {
-	Super::NativeConstruct();
+	UUserWidget::NativeConstruct();
 }
 
-void UComboWidget::UpdateComboCout(int value)
+void UComboWidget::UpdateComboCount(int value)
 {
 	if (TXTCombo->Visibility == ESlateVisibility::Hidden)
 	{
@@ -20,10 +21,18 @@ void UComboWidget::UpdateComboCout(int value)
 	}
 	TXTCombo->SetText(FText::FromString(FString::FromInt(value) + "x Combo"));
 }
-void UComboWidget::ReserCombo()
+void UComboWidget::ResetCombo()
 {
 	if (TXTCombo)
 	{
 		TXTCombo->SetVisibility(ESlateVisibility::Hidden);
 	}
 }
+
+void UComboWidget::UpdateNodeName(FString& string)
+{
+	FText toText = FText::FromString(string);
+	nodeName->SetText(toText);
+}
+
+
