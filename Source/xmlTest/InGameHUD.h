@@ -30,5 +30,6 @@ public:
 	UPROPERTY(EditDefaultsOnly, Category = "Widgets")
 		TSubclassOf<UUserWidget> comboWidgetClass;
 	UComboWidget* comboWidget;
+	void CreateWidgets(FString string);
 	
 };

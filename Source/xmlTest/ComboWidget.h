@@ -6,9 +6,10 @@
 #include "Blueprint/UserWidget.h"
 #include "UObjectGlobals.h"
 #include "Runtime/UMG/Public/Components/TextBlock.h"
+#include "Runtime/UMG/Public/Components/VerticalBox.h"
+#include "Runtime/UMG/Public/Blueprint/WidgetTree.h"
 #include "ComboWidget.generated.h"
 
-class UVerticalBox;
 
 
 
@@ -34,4 +35,5 @@ public:
 	void UpdateNodeName(FString &string);
 	//xmlReader supply for info
 	class AXMLReadTest* xmlReader;
+	void CreateWidgets(FString string);
 };

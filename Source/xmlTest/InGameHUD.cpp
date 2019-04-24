@@ -59,3 +59,8 @@ void AInGameHUD::UpdateNodeName(FString string)
 	
 }
 
+void AInGameHUD::CreateWidgets(FString string)
+{
+	comboWidget->CreateWidgets(string);
+}
+

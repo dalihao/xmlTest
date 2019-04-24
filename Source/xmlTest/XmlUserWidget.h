@@ -13,5 +13,9 @@ UCLASS()
 class XMLTEST_API UXmlUserWidget : public UUserWidget
 {
 	GENERATED_BODY()
+public:
+	//Bind Widget can use the same variable in blueprint userWidget
+	UPROPERTY(EDitAnywhere, BlueprintReadWrite, meta = (BindWidget))
+		class UButton* button;
 	
 };

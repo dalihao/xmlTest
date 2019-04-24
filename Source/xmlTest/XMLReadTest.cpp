@@ -57,14 +57,8 @@ void AXMLReadTest::BeginPlay()
 {
 	Super::BeginPlay();
 	//xmlRead 
-	inGameHUD = Cast<AInGameHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
-	if (inGameHUD)
-	{
-		FString tag = firstChildNode->GetTag();
-		inGameHUD->UpdateNodeName(tag);
-	}
-	else
-		UKismetSystemLibrary::PrintString(this,"nullptr");
+	printALLNodes();
+	
 #if 0	
 	//show rootNode's children nodes's information
 	const  int childrenCount = children.Num();
@@ -108,5 +102,20 @@ void AXMLReadTest::printALLNodes()
 	//	}
 	//	//UKismetSystemLibrary::PrintString(this,pNode->GetChildrenNodes()[i]->GetTag());
 	//}
+	inGameHUD = Cast<AInGameHUD>(UGameplayStatics::GetPlayerController(this, 0)->GetHUD());
+	if (inGameHUD)
+	{
+		FString tag = firstChildNode->GetTag();
+		inGameHUD->UpdateNodeName(tag);
+		int childrenCount = children.Num();
+		for (int i = 0; i < childrenCount; i++)
+		{
+			inGameHUD->CreateWidgets(children[i]->GetTag());
+		}
+
+	}
+	else
+		UKismetSystemLibrary::PrintString(this, "nullptr");
+
 }
 

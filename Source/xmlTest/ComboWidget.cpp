@@ -35,4 +35,13 @@ void UComboWidget::UpdateNodeName(FString& string)
 	nodeName->SetText(toText);
 }
 
+void UComboWidget::CreateWidgets(FString string)
+{
+	UTextBlock* textBlock = WidgetTree->ConstructWidget<UTextBlock>();
+	childrenVerticalBox->AddChild(textBlock);
+	FText toText = FText::FromString(string);
+	textBlock->SetText(toText);
+
+}
+
 
