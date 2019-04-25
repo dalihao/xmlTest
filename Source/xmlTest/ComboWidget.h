@@ -8,6 +8,7 @@
 #include "Runtime/UMG/Public/Components/TextBlock.h"
 #include "Runtime/UMG/Public/Components/VerticalBox.h"
 #include "Runtime/UMG/Public/Blueprint/WidgetTree.h"
+#include "Runtime/UMG/Public/Components//CanvasPanel.h"
 #include "ComboWidget.generated.h"
 
 
@@ -25,7 +26,7 @@ public:
 	virtual void NativeConstruct() override;
 	void UpdateComboCount(int value);
 	void ResetCombo();
-
+	
 	UPROPERTY(EditAnywhere, BluePrintReadWrite, meta = (BindWidget))
 		class UTextBlock* TXTCombo;
 	UPROPERTY(EditAnywhere, BluePrintReadWrite, meta = (BindWidget))

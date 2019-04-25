@@ -4,7 +4,7 @@
 
 UComboWidget::UComboWidget(const FObjectInitializer& ObjectInitializer):UUserWidget(ObjectInitializer)
 {
-
+	
 }
 
 
@@ -37,10 +37,30 @@ void UComboWidget::UpdateNodeName(FString& string)
 
 void UComboWidget::CreateWidgets(FString string)
 {
-	UTextBlock* textBlock = WidgetTree->ConstructWidget<UTextBlock>();
-	childrenVerticalBox->AddChild(textBlock);
+
+			/*UTextBlock* textBlock = WidgetTree->ConstructWidget<UTextBlock>();
+			childrenVerticalBox->AddChild(textBlock);
+			FText toText = FText::FromString(string);
+			textBlock->SetText(toText);*/
+
+
+	UComboWidget* subComboWidget = CreateWidget<UComboWidget>(GetWorld());
+	childrenVerticalBox->AddChild(subComboWidget);
 	FText toText = FText::FromString(string);
-	textBlock->SetText(toText);
+	/*subComboWidget->nodeName = subComboWidget->WidgetTree->ConstructWidget<UTextBlock>();
+	subComboWidget->nodeName->SetText(toText);*/
+	
+	//add rootName to subComboWidget
+	/*UCanvasPanel* rootWidget = subComboWidget->WidgetTree->ConstructWidget<UCanvasPanel>();
+	subComboWidget->WidgetTree->RootWidget = rootWidget;
+	rootWidget->AddChild(subComboWidget->nodeName);
+*/
+	UTextBlock* textblock = WidgetTree->ConstructWidget<UTextBlock>();
+	subComboWidget->childrenVerticalBox = WidgetTree->ConstructWidget<UVerticalBox>();
+	childrenVerticalBox->AddChild(subComboWidget->childrenVerticalBox);
+	subComboWidget->childrenVerticalBox->AddChild(textblock);
+	textblock->SetText(toText);
+
 
 }
 
